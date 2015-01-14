@@ -633,6 +633,8 @@ INSERT INTO address_format VALUES (2, '$firstname $lastname$cr$streets$cr$city, 
 INSERT INTO address_format VALUES (3, '$firstname $lastname$cr$streets$cr$city$cr$postcode - $statecomma$country','$state / $country');
 INSERT INTO address_format VALUES (4, '$firstname $lastname$cr$streets$cr$city ($postcode)$cr$country', '$postcode / $country');
 INSERT INTO address_format VALUES (5, '$firstname $lastname$cr$streets$cr$postcode $city$cr$country','$city / $country');
+# hungarian
+INSERT INTO address_format VALUES (6, '$lastname $firstname$cr$streets$cr $city$cr$postcode$cr$country', '$city / $country');
 
 INSERT INTO banners VALUES (1, 'osCommerce', 'http://www.oscommerce.com', 'banners/oscommerce.gif', 'footer', '', 0, null, null, now(), null, 1);
 
@@ -679,6 +681,28 @@ INSERT INTO categories_description VALUES ( '18', '1', 'Simulation');
 INSERT INTO categories_description VALUES ( '19', '1', 'Action');
 INSERT INTO categories_description VALUES ( '20', '1', 'Strategy');
 INSERT INTO categories_description VALUES ( '21', '1', 'Gadgets');
+
+INSERT INTO categories_description VALUES ( '1', '2', 'Hardver');
+INSERT INTO categories_description VALUES ( '2', '2', 'Szoftver');
+INSERT INTO categories_description VALUES ( '3', '2', 'DVD filmek');
+INSERT INTO categories_description VALUES ( '4', '2', 'Videó kártyák');
+INSERT INTO categories_description VALUES ( '5', '2', 'Nyomtatók');
+INSERT INTO categories_description VALUES ( '6', '2', 'Monitorok');
+INSERT INTO categories_description VALUES ( '7', '2', 'Hangszórók');
+INSERT INTO categories_description VALUES ( '8', '2', 'Billentyűzetek');
+INSERT INTO categories_description VALUES ( '9', '2', 'Egerek');
+INSERT INTO categories_description VALUES ( '10', '2', 'Akció');
+INSERT INTO categories_description VALUES ( '11', '2', 'Tudományos fantasztikus');
+INSERT INTO categories_description VALUES ( '12', '2', 'Vígjáték');
+INSERT INTO categories_description VALUES ( '13', '2', 'Rajzfilmek');
+INSERT INTO categories_description VALUES ( '14', '2', 'Thriller');
+INSERT INTO categories_description VALUES ( '15', '2', 'Dráma');
+INSERT INTO categories_description VALUES ( '16', '2', 'Memória');
+INSERT INTO categories_description VALUES ( '17', '2', 'CDROM meghajtók');
+INSERT INTO categories_description VALUES ( '18', '2', 'Szimulátorok');
+INSERT INTO categories_description VALUES ( '19', '2', 'Akció');
+INSERT INTO categories_description VALUES ( '20', '2', 'Stratégiai');
+INSERT INTO categories_description VALUES ( '21', '2', 'Eszközök');
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Name', 'STORE_NAME', 'osCommerce', 'The name of my store', '1', '1', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Owner', 'STORE_OWNER', 'Harald Ponce de Leon', 'The name of my store owner', '1', '2', now());
@@ -974,7 +998,7 @@ INSERT INTO countries VALUES (93,'Haiti','HT','HTI','1');
 INSERT INTO countries VALUES (94,'Heard and Mc Donald Islands','HM','HMD','1');
 INSERT INTO countries VALUES (95,'Honduras','HN','HND','1');
 INSERT INTO countries VALUES (96,'Hong Kong','HK','HKG','1');
-INSERT INTO countries VALUES (97,'Hungary','HU','HUN','1');
+INSERT INTO countries VALUES (97,'Hungary','HU','HUN','6');
 INSERT INTO countries VALUES (98,'Iceland','IS','ISL','1');
 INSERT INTO countries VALUES (99,'India','IN','IND','1');
 INSERT INTO countries VALUES (100,'Indonesia','ID','IDN','1');
@@ -1120,8 +1144,12 @@ INSERT INTO countries VALUES (239,'Zimbabwe','ZW','ZWE','1');
 
 INSERT INTO currencies VALUES (1,'U.S. Dollar','USD','$','','.',',','2','1.0000', now());
 INSERT INTO currencies VALUES (2,'Euro','EUR','','€','.',',','2','1.0000', now());
+INSERT INTO currencies VALUES (3, 'Hungarian Forint', 'HUF', '', 'Ft', '.', ',', 2, 220.93099976, '2013-11-04 19:22:26');
 
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',1);
+
+# Hungary
+INSERT INTO languages VALUES (2,'Magyar','hu','icon.gif','magyar',2);
 
 INSERT INTO manufacturers VALUES (1,'Matrox','manufacturer_matrox.gif', now(), null);
 INSERT INTO manufacturers VALUES (2,'Microsoft','manufacturer_microsoft.gif', now(), null);
@@ -1146,8 +1174,11 @@ INSERT INTO manufacturers_info VALUES (9, 1, 'http://www.hewlettpackard.com', 0,
 INSERT INTO manufacturers_info VALUES (10, 1, 'http://www.samsung.com', 0, null);
 
 INSERT INTO orders_status VALUES ( '1', '1', 'Pending', '1', '0');
+INSERT INTO orders_status VALUES ( '1', '2', 'Fogadva és visszaigazolva', '1', '0');
 INSERT INTO orders_status VALUES ( '2', '1', 'Processing', '1', '1');
+INSERT INTO orders_status VALUES ( '2', '2', 'Csomagolás és feladás alatt', '1', '1');
 INSERT INTO orders_status VALUES ( '3', '1', 'Delivered', '1', '1');
+INSERT INTO orders_status VALUES ( '3', '2', 'Elküldve', '1', '1');
 
 INSERT INTO products VALUES (1,32,'MG200MMS','matrox/mg200mms.gif',299.99, now(),null,null,23.00,1,1,1,0);
 INSERT INTO products VALUES (2,32,'MG400-32MB','matrox/mg400-32mb.gif',499.99, now(),null,null,23.00,1,1,1,0);
@@ -1207,6 +1238,36 @@ INSERT INTO products_description VALUES (26,1,'Microsoft IntelliMouse Explorer',
 INSERT INTO products_description VALUES (27,1,'Hewlett Packard LaserJet 1100Xi','HP has always set the pace in laser printing technology. The new generation HP LaserJet 1100 series sets another impressive pace, delivering a stunning 8 pages per minute print speed. The 600 dpi print resolution with HP\'s Resolution Enhancement technology (REt) makes every document more professional.<br /><br />Enhanced print speed and laser quality results are just the beginning. With 2MB standard memory, HP LaserJet 1100xi users will be able to print increasingly complex pages. Memory can be increased to 18MB to tackle even more complex documents with ease. The HP LaserJet 1100xi supports key operating systems including Windows 3.1, 3.11, 95, 98, NT 4.0, OS/2 and DOS. Network compatibility available via the optional HP JetDirect External Print Servers.<br /><br />HP LaserJet 1100xi also features The Document Builder for the Web Era from Trellix Corp. (featuring software to create Web documents).','www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100',0);
 INSERT INTO products_description VALUES (28,1,'Samsung Galaxy Tab','<p>Powered by a Cortex A8 1.0GHz application processor, the Samsung GALAXY Tab is designed to deliver high performance whenever and wherever you are. At the same time, HD video contents are supported by a wide range of multimedia formats (DivX, XviD, MPEG4, H.263, H.264 and more), which maximizes the joy of entertainment.</p><p>With 3G HSPA connectivity, 802.11n Wi-Fi, and Bluetooth 3.0, the Samsung GALAXY Tab enhances users\' mobile communication on a whole new level. Video conferencing and push email on the large 7-inch display make communication more smooth and efficient. For voice telephony, the Samsung GALAXY Tab turns out to be a perfect speakerphone on the desk, or a mobile phone on the move via Bluetooth headset.</p>','http://galaxytab.samsungmobile.com',0);
 
+INSERT INTO products_description VALUES (1,2,'Matrox G200 MMS','Megerősítve a pozícióját a sok monitorból álló kijelzők piacán a Matrox Graphics Inc. kifejlesztette a legrugalmasabb és legkorszerűbb megoldást a piacon. Bemutatjuk az új Matrox G200 Multi-Monitor Szériát, ami az első olyan grafikus kártya amely képes támogatni akár négy DVI digitális síkképernyőt egyetlen 8X PCI slot-on keresztül.<br><br>Az üzleti életben meghonososdott digitális síkképernyős kijelzők iránti egyre fokozódó igényekkel lépést tartva, a Matrox G200 MMS nyújtja a legrugalmasabb megoldásokat. A Matrox G200 MMS támogatja az új digitális videóinterfészt (DVI), a Digital Display Working Group (DDWG) teszi lehetővé a függetlenítést a  digitális lapos panelektől. Egyebek közt lehetővé van téve a videójelfogás, és alaplapra szerelt tévéhangolót tartalmaz.<br><br>A díjazott grafikai chip nyugszik az MGA G200 alapján, a Matrox G200 Multi-Monitor Széria felsőbbrendű 2D/3D grafikai gyorsulást nyújt hogy kielégítse az üzleti alkalmazások igényes szükségleteit. Ilyen a valós időjű képkezelés (Versus), az élő videó (a Reuters & Bloombergs), több ablakos alkalmazások, szövegszerkesztés, táblázatok és a CAD','www.matrox.com/mga/products/g200_mms/home.cfm',0);
+INSERT INTO products_description VALUES (2,2,'Matrox G400 32MB','<b>Drámaian nagy teljesítményű grafika</b><br><br>Bemutatjuk a Millennium G400 Szériát - egy drámaian nagy teljesítményű grafika meghajtót. Felfegyverkezve az ipar leggyorsabb grafikai chipjével, ami a Millennium G400 Szériánál robbanásszerű gyorsulást eredményez, A legtöbb sokoldalú kijelzőopcióval egyetemben példátlan képminőséget ad a 3D, 2D és DVD alkalmazások esetén, a teljesebb számítógéphasználat élvezetéért. Legerőteljesebb és leginnovatívabb eszközként a PC-dben már meglévő arzenált egészíti ki. A Millennium G400 Széria nem csak a grafikai megjelenítést fogja megváltoztatni, de forradalmasítani fogja a számítógéped használhatóságát is.<br><br><b>Key features:</b><ul><li>Új Matrox G400 256-bit DualBus graphikai chip</li><li>Forradalmi 3D, 2D and DVD megjelenítés</li><li>Két kijelző kezelése</li><li>Fejlett DVD és TV kimenetek</li><li>3D Environment-Mapped Bump leképezés</li><li>Vibráló Szin minőség visszadása </li><li>UltraÉles DAC 360 MHz</li><li>3D renderelő processzortömb</li><li>16 vagy 32 MB saját memóriával</li></ul>','www.matrox.com/mga/products/mill_g400/home.htm',0);
+INSERT INTO products_description VALUES (3,2,'Microsoft IntelliMouse Pro','IntelliMouse Pro minden eleme - az egyedülálló ívelt alakja a gumi szövetbe burkolt alapja - kiterjedt felhasználói és ergonómiai kutatás eredénye. A Microsoft népszerű kerékirányítása, ami most nagyítást és univerzális görgető funkciókat enged meg, kiemelkedő kényelmet és hatékonyságot ad IntelliMouse Pro-nak.','www.microsoft.com/hardware/mouse/intellimouse.asp',0);
+INSERT INTO products_description VALUES (4,2,'Gyilkosok gyilkosa','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).<br>Nyelvek: English, Deutsch.<br>Feliratok: English, Deutsch, Spanish.<br>Hang: Dolby Surround 5.1.<br>Kép formátuma: 16:9 széles képernyő.<br>Játékidő: (körülbelül) 80 perc.<br>Extrák: Interaktív menü, Jelenet választása, Feliratok (több nyelven).','www.replacement-killers.com',0);
+INSERT INTO products_description VALUES (5,2,'Szárnyas fejvadász - rendezői változat','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).<br>Nyelvek: English, Deutsch.<br>Feliratok: English, Deutsch, Spanish.<br>Hang: Dolby Surround 5.1.<br>Kép formátuma: 16:9 széles képernyő.<br>Játékidő: (körülbelül) 112 perc.<br>Extrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','www.bladerunner.com',0);
+INSERT INTO products_description VALUES (6,2,'Mátrix','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch.\r<br>\nHang: Dolby Surround.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 131 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Making Of.','www.thematrix.com',0);
+INSERT INTO products_description VALUES (7,2,'A szerelem hálójában','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch, Spanish.\r<br>\nFeliratok: English, Deutsch, Spanish, French, Nordic, Polish.\r<br>\nSubtitles: Dolby Digital 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 115 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','www.youvegotmail.com',0);
+INSERT INTO products_description VALUES (8,2,'Egy bogár élete','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek:: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Digital 5.1 / Dobly Surround Stereo.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 91 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','www.abugslife.com',0);
+INSERT INTO products_description VALUES (9,2,'Uszó erőd','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 98 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (10,2,'Uszó erőd 2 - Sötét vidék','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 98 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (11,2,'Tűz a mélyben','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 100 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (12,2,'Die Hard 3. - Az élet mindig drága','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 122 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (13,2,'Halálos fegyver','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 100 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (14,2,'Vörös sarok','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 117 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (15,2,'Őrület','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 115 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (16,2,'A bátrak igazsága','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 112 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (17,2,'Féktelenül','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 112 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (18,2,'Féktelenül 2. - Teljes gőzzel','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 120 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (19,2,'Keresd a nőt','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 114 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (20,2,'Szeretett','Regionális Kód: 2 (Japan, Europe, Middle East, South Africa).\r<br>\nNyelvek: English, Deutsch.\r<br>\nFeliratok: English, Deutsch, Spanish.\r<br>\nHang: Dolby Surround 5.1.\r<br>\nKép formátuma: 16:9 széles képernyő.\r<br>\nJátékidő: (körülbelül) 164 perc.\r<br>\nExtrák: Interaktív menü, Jelenet választása, Feliratok (több nyelv).','',0);
+INSERT INTO products_description VALUES (21,2,'SWAT 3: Close Quarters Battle','<b>Windows 95/98</b><br><br>211 folyamatban, lőnek ránk! Tisztviselő a földön! Fegyveres gyanúsítottak, túszokat ejtettek! Válaszkód 3! Los Angles, 2005. A következő hét napban, képviselők a világ minden nemzetének országából érkeznek Las Anglesbe hogy tanúi legyenek, az Egyesült Nemzetek Nukleáris Leszerelési Egyezménye aláírásának. Ezeknek a méltóságoknak a védelme egy szervezet felelőssége, LAPD SWAT. Ennek az elitnek a részeként, a taktikai szervezetnek neked és a csapatodnak, fegyvereik és szaktudásuk felhasználásával kell szolgálni és védeni, és arra használnia a halálos tudását, hogy megtartsa a békét. Ez többet jelent a fegyverek puszta használatánál. Az arzenálod C2 töltetek, kábítógránátok, taktikai gránátokból, mini-videókamerákból, és más eszközökből áll, amik fontosak a küldetések végrehajtása szempontjából. Kompromisszummentes kötelesség, becsület és bátorság!','www.swat3.com',0);
+INSERT INTO products_description VALUES (22,2,'Unreal Tournament','A méltán népszerű Unreal alkotóitól, jön Unreal Tournament, ami egy új fajta egy játékos élményt biztosít számodra, és egyben forradalmasítja a multiplayer játékok fogalmát.<br><br>Ez az egyedülálló játékmenet egy teljesen új csapat alapú játékmenet, áttörő sok újracsiszolt egyjátékos vagy dinamikus sok játékosból álló játékot tesz lehetővé. Ez egy kemény küzdelem az Unreal nagymester címéért az arénában. Az egyjátékos élmény máshoz nem fogható! Irányítsd a csapatodat (virtuális csapatok) a végső Unreal nagymester címért a galaxisban levő legkeményebb bűnözők ellen.','www.unrealtournament.net',0);
+INSERT INTO products_description VALUES (23,2,'Az idő kereke','A világ amiben Az idő kereke zajlik közvetlenül Jordánból származik, ami hatalmas játékteret biztosít és rengeteg különböző környezetből áll. Az, hogy hogyan navigálsz, nagyrészt a világtól függ ahol a játék - egyjátékos vagy multipayer - játszol. Az egyjátékos játék esetén néhány expedíció során látni fogod Elaynát, ahogy - főleg gyalog - szeled át a világot (pár feljegyezhető expedíció során). Multiplayer játék esetén a karakterednek több hozzáférése lesz az utazásokhoz Ter\'angreal, Portal Stoneson keresztül. Mindazonáltal ahogy vándorolsz, gyorsan fel fogod fedezni, hogy a helyváltoztatás eszközei lesznek a legkisebb gondjaid...<br><br>Az utazásaid alatt gyorsan fel fogod fedezni, hogy négy helyszín kulcsfontosságú a játékban elért sikereid szempontjából. Nem meglepően ezek a helyszínek Az idő kereke szereplőinek otthonai. Ezek közül a helyek közül néhányat közvetlenül Jordán könyveinek oldalairól származnak, a kreált hús-vér Legendákkal ezek példátlan utak és kalandok lesznek. Másrészt jellemző a játékra, a kitalált és végletekig részletesen kigondolt játékmenet és környezet. Bármelyik utat is választod, egy feledhetelen utazásban és kalandban lesz részed, ami meghatározhatja az életedet.','www.wheeloftime.com',0);
+INSERT INTO products_description VALUES (24,2,'Disciples: Sacred Lands','Egy új kor virrad...<br><br>Lépj be a Sacred Lands birodalmába, ahol beköszöntött az újkor hajnala, ahol a legtöbb jelentős háború zajlik. A jóslatok szerint, amiket régóta megjövendöltek, négy versenyen most összecsaphatsz kardokkal és varázslattal és kétségbeesett kísérlet tehetsz, hogy irányítsd az Isteneid végzetét. Teszteld magad a nyers erőszak csatáiban, lenyűgöző varázslatokkal és a cselekkel a birodalom bajnokaként, a Mountain Clansként, a Damned Legionsével vagy az Undead Hordesszal. Pusztíts el a démonokat, győzzd le az óriásokat és harcolj a halottak irgalmatlan erői és az élőhalottak ellen. De hogy biztosítsd Isteni üdvözülésed, hősé kell válnod.<br><br>Az elszámolás napja eljött... és csak a kiválasztott fog életben maradni.','',0);
+INSERT INTO products_description VALUES (25,2,'Microsoft Internet billentyűzet PS/2','Az Internet Keyboardnak 10 gyorsgombja van egy kényelmes szabványos billentyűzeten ami levehető csuklótámaszt is tartalmaz. A gyorsgombok lehetővé teszik, hogy közvetlenül a billentyűzetedről böngéssz a világhálón, vagy a ellenőrízd a leveleid. Az IntelliType Pro szoftver segítségével testreszabadhatod a gyorsbillentyűidet - ezáltal lehetővé téve, hogy úgy használd a Internet Keyboardot, ahogy igényeidnek a legjobban megfelel!','',0);
+INSERT INTO products_description VALUES (26,2,'Microsoft IntelliMouse Explorer','A Microsoft bemutatja felsőkategóriás egerét, az IntelliMouse Explorer-t! IntelliMouse Explorer-t tökéletes tervezés jellemzi, az ipar csúcsterméke, sejtelmes vörös fényű ragyogásba burkolózva és taillight-al felfegyverezve, egyedi stílus jellemzi, mely az első pillantásra megkülőnbözteti a konkurens termékektől. IntelliMouse Explorer-ben egyesül a Microsoft IntelliEye pontossága és megbízhatósága valamint optikai követő technológiája, a két új testreszabható funkciógomb kényelme, az görgető kerék hatékonysága és a profi ergonómikus terv kényelme. Ezek a jellemzők teszik a legjobbak egérré a PC világában!','www.microsoft.com/hardware/mouse/explorer.asp',0);
+INSERT INTO products_description VALUES (27,2,'Hewlett Packard LaserJet 1100Xi','HP mindig élen járt a lézernyomtatási technológiában. Az új generációs HP a LaserJet 1100 szériák egy új mércét állítottak fel az elképesztő 8 oldal egy perc nyomtatási teljesítményükkel. A 600 dpi felbontású nyomtatási minőség és a Resolution Enhancement technológia (REt) segítségével még professzionálisabbá tesz minden dokumentumot.<br><br>
+A növelt nyomtatási sebesség és minőség csak a kezdet. 2 MB-os belső memória, HP LaserJet 1100Xi felhasználókat lehetőséget nyújt arra, hogy egyre inkább összetett oldalakat nyomtassanak. Memóriát növelhetnek 18 MB-ig ami még több komplex dokument könnyed előállítását teszi lehetővé. A HP LaserJet 1100Xi által támogatott operációs rendszerek Windows 3.1, 3.11-et, 95-öt, 98-at, NT 4.0, OS/2 és DOS. Kösse hálózatba a szabadon választható HP JetDirect External Print Szerveren keresztül és növelje könnyedén a rendelkezésre álló kompatibilitást.<br><br>HP LaserJet 1100Xi-t ajánlja Trelix Corp. Web Era A Dokumnetum Épitője. (ajánlott program Webes dokumenumok készítéséhez).','www.pandi.hp.com/pandi-db/prodinfo.main?product=laserjet1100',0);
+INSERT INTO products_description VALUES (28,2,'Samsung Galaxy Tab','<p>Cortex A8 1,0 GHz-es alkalmazás orientált processzor addja a rendszer erejét, a Samsung GALAXY Tab úgy tervezték, hogy kiváló teljesítményt nyújtson bármikor, bárhol is vagy. Ugyanakkor, HD video tartalom által támogat számos multimédiás formátumot (DivX, XviD, MPEG4, H.263, H.264), amely maximalizálja a szórakozás nyújtotta örömöket. </ P> A 3G HSPA kapcsolat, 802.11n Wi-Fi és Bluetooth 3.0, a Samsung GALAXY Tab emeli a felhasználókat a mobil kommunikáció egy teljesen új szintjére. Videokonferencia és a push e-mail alkalmazások használatát nagy, 7 "-os kijelző teszi zökkenőmentessé és hatékonnyá. A Samsung GALAXY Tab tökéletesen kihangosíható irodában vagy otthon, vagy útközben Bluetooth headset segítségével.</p>','http://galaxytab.samsungmobile.com',0);
+
 INSERT INTO products_attributes VALUES (1,1,4,1,0.00,'+');
 INSERT INTO products_attributes VALUES (2,1,4,2,50.00,'+');
 INSERT INTO products_attributes VALUES (3,1,4,3,70.00,'+');
@@ -1241,6 +1302,11 @@ INSERT INTO products_options VALUES (2,1,'Size');
 INSERT INTO products_options VALUES (3,1,'Model');
 INSERT INTO products_options VALUES (4,1,'Memory');
 INSERT INTO products_options VALUES (5, 1, 'Version');
+INSERT INTO products_options VALUES (1,2,'Szín');
+INSERT INTO products_options VALUES (2,2,'Méret');
+INSERT INTO products_options VALUES (3,2,'Modell');
+INSERT INTO products_options VALUES (4,2,'Memória');
+INSERT INTO products_options VALUES (5, 2, 'Verzió');
 
 INSERT INTO products_options_values VALUES (1,1,'4 mb');
 INSERT INTO products_options_values VALUES (2,1,'8 mb');
@@ -1253,6 +1319,17 @@ INSERT INTO products_options_values VALUES (8,1,'PS/2');
 INSERT INTO products_options_values VALUES (9,1,'USB');
 INSERT INTO products_options_values VALUES (10, 1, 'Download: Windows - English');
 INSERT INTO products_options_values VALUES (13, 1, 'Box: Windows - English');
+INSERT INTO products_options_values VALUES (1,2,'4 mb');
+INSERT INTO products_options_values VALUES (2,2,'8 mb');
+INSERT INTO products_options_values VALUES (3,2,'16 mb');
+INSERT INTO products_options_values VALUES (4,2,'32 mb');
+INSERT INTO products_options_values VALUES (5,2,'Value');
+INSERT INTO products_options_values VALUES (6,2,'Premium');
+INSERT INTO products_options_values VALUES (7,2,'Deluxe');
+INSERT INTO products_options_values VALUES (8,2,'PS/2');
+INSERT INTO products_options_values VALUES (9,2,'USB');
+INSERT INTO products_options_values VALUES (10, 2, 'Letöltés: Windows - Magyar');
+INSERT INTO products_options_values VALUES (13, 2, 'Doboz: Windows - Magyar');
 
 INSERT INTO products_options_values_to_products_options VALUES (1,4,1);
 INSERT INTO products_options_values_to_products_options VALUES (2,4,2);
@@ -1320,10 +1397,20 @@ INSERT INTO specials VALUES (4,16, 29.99, now(), null, null, null, '1');
 
 INSERT INTO tax_class VALUES (1, 'Taxable Goods', 'The following types of products are included non-food, services, etc', now(), now());
 
+# Hungary
+INSERT INTO tax_class VALUES (2, '27% Áfa', '21.26% áfa tartalom', NULL, '2013-03-20 12:39:24');
+
 # USA/Florida
 INSERT INTO tax_rates VALUES (1, 1, 1, 1, 7.0, 'FL TAX 7.0%', now(), now());
+# Hungary
+INSERT INTO tax_rates VALUES (2, 2, 2, 0, 27.0000, '21.26% Áfa tartalom', NULL, '2013-03-20 12:40:33');
+
 INSERT INTO geo_zones (geo_zone_id,geo_zone_name,geo_zone_description,date_added) VALUES (1,"Florida","Florida local sales tax zone",now());
 INSERT INTO zones_to_geo_zones (association_id,zone_country_id,zone_id,geo_zone_id,date_added) VALUES (1,223,18,1,now());
+
+# Hungary 182!
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (2, 'Hungary', 'Magyar adózóna', NULL, '2013-03-20 12:38:00');
+INSERT INTO zones_to_geo_zones (association_id,zone_country_id,zone_id,geo_zone_id,date_added) VALUES (2,97,182,2,now());
 
 # USA
 INSERT INTO zones VALUES (1,223,'AL','Alabama');
@@ -1517,6 +1604,9 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Valladoli
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Vizcaya','Vizcaya');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Zamora','Zamora');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (195,'Zaragoza','Zaragoza');
+
+# Hungary 182-s!
+INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (97,'Hungary','Hungary');
 
 # PayPal Express
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, public_flag, downloads_flag) values ('4', '1', 'PayPal [Transactions]', 0, 0);
