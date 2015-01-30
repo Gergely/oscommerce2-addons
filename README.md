@@ -6,3 +6,7 @@ Website: http://www.oscommerce.com
 Support Forums: http://forums.oscommerce.com
 
 This repo does separated addons in branches
+
+- cPath validation
+- hungarian translation
+- conversion tool
