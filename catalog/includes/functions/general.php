@@ -257,6 +257,36 @@
   }
 
 ////
+// Validate a category path 
+  function tep_get_validate_cpath($cPath = '') {
+
+    $validation_query = tep_db_query("select categories_id from " . TABLE_CATEGORIES . " where cpath = '" . tep_db_prepare_input($cPath) . "'");
+
+    if ( tep_db_num_rows($validation_query) < 1) {
+      return false;
+    }
+
+    return false;
+  }
+
+////
+// Validate a category path to the product
+  function tep_get_validate_product_cpath($products_id, $cPath = '') {
+
+    $category_query = tep_db_query("select c.cpath from " . TABLE_PRODUCTS . " p left join " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c on(p.products_id = p2c.products_id) left join " . TABLE_CATEGORIES . " c on(p2c.categories_id = c.categories_id) where p.products_id = '" . (int)$products_id . "' and p.products_status = '1'");
+
+    while ($category = tep_db_fetch_array($category_query)) {
+
+      if ($category['cpath'] == $cPath) {
+        return true;
+      }
+
+    }
+
+    return false;
+  }
+
+////
 // Returns the clients browser
   function tep_browser_detect($component) {
     return stristr($_SERVER['HTTP_USER_AGENT'], $component);

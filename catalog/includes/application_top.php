@@ -397,8 +397,37 @@
   $oscTemplate = new oscTemplate();
 
 // calculate category path
-  if ( isset($_GET['cPath']) ) {
-    $cPath = $_GET['cPath'];
+  if (isset($HTTP_GET_VARS['cPath'])) {
+    $cPath = $HTTP_GET_VARS['cPath'];
+    if (tep_not_null($cPath)) {
+      $cPath_array = tep_parse_category_path($cPath);
+      $categories_query = tep_db_query("select cpath from " . TABLE_CATEGORIES . " where categories_id = '" . (int)$cPath_array[sizeof($cPath_array)-1] . "'");
+     if ( !tep_db_num_rows($categories_query) ) {
+       //not found categories
+       //redirect to $current_category_id = 0;
+       header("HTTP/1.0 404 Not Found"); //302 Status
+       tep_redirect( tep_href_link(basename($PHP_SELF), tep_get_all_get_params(array('cPath'))) );
+     } else {
+       $new = tep_db_fetch_array($categories_query);
+       $new_cPath = $new['cpath'];
+       if ( tep_not_null($new_cPath) ) {
+         if ( isset($HTTP_GET_VARS['cPath']) && $HTTP_GET_VARS['cPath'] !== $new_cPath) {
+           header("HTTP/1.0 301 Moved Permanently");
+           tep_redirect(tep_href_link(basename($PHP_SELF), 'cPath=' . $new_cPath . '&' . tep_get_all_get_params(array('cPath'))) );
+         }
+       }
+     }
+    }
+    if ( isset($HTTP_GET_VARS['products_id']) && !tep_get_validate_product_cpath($HTTP_GET_VARS['products_id'], $cPath) ) {
+      $cPath = tep_get_product_path($HTTP_GET_VARS['products_id']);
+      //redirect to product base
+      $path_link = '';
+      if (tep_not_null($cPath)) {
+        $path_link = 'cPath=' . $cPath . '&';
+      }
+      header("HTTP/1.0 301 Moved Permanently");
+      tep_redirect(tep_href_link(basename($PHP_SELF), $path_link . tep_get_all_get_params(array('cPath'))) );
+    }
   } elseif ( isset($_GET['products_id']) && !isset($_GET['manufacturers_id']) ) {
     $cPath = tep_get_product_path($_GET['products_id']);
   } else {
@@ -430,7 +459,8 @@
 
         $breadcrumb->add($categories['categories_name'], tep_href_link(FILENAME_DEFAULT, 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
       } else {
-        break;
+        header("HTTP/1.0 404 Not Found");
+        exit;
       }
     }
   } elseif ( isset($_GET['manufacturers_id']) ) {

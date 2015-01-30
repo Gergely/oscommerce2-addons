@@ -138,6 +138,8 @@
           tep_reset_cache_block('also_purchased');
         }
 
+        tep_update_cpath($categories_id);
+
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
         break;
       case 'delete_product_confirm':
@@ -182,6 +184,8 @@
               tep_reset_cache_block('categories');
               tep_reset_cache_block('also_purchased');
             }
+
+            tep_update_cpath($categories_id);
 
             tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $new_parent_id . '&cID=' . $categories_id));
           }

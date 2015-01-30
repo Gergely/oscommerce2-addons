@@ -1455,4 +1455,40 @@
       return is_writable($file);
     }
   }
+
+////
+// cPath update cfg function
+  function tep_cfg_update_cpath( $action = 'false' ) {
+    if ($action == 'update') {
+      $cPath_query = tep_db_query("select categories_id from " . TABLE_CATEGORIES . "");
+      while ($cP = tep_db_fetch_array($cPath_query)) {
+        tep_update_cpath($cP['categories_id']);
+      }
+    }
+  }
+
+////
+// cPath parameter save to table
+  function tep_update_cpath($categories_id) {
+    $categories = array();
+    $categories[] = $categories_id;
+    tep_get_parent_categories($categories, $categories_id);
+    $categories = array_reverse($categories);
+    $new_cPath = implode('_', $categories);
+    tep_db_query("update " . TABLE_CATEGORIES . " set cpath = '" . $new_cPath . "' where categories_id = " . (int)$categories_id . "");
+  }
+
+////
+// Recursively go through the categories and retreive all parent categories IDs
+// TABLES: categories
+  function tep_get_parent_categories(&$categories, $categories_id) {
+    $parent_categories_query = tep_db_query("select parent_id from " . TABLE_CATEGORIES . " where categories_id = '" . (int)$categories_id . "'");
+    while ($parent_categories = tep_db_fetch_array($parent_categories_query)) {
+      if ($parent_categories['parent_id'] == 0) return true;
+      $categories[sizeof($categories)] = $parent_categories['parent_id'];
+      if ($parent_categories['parent_id'] != $categories_id) {
+        tep_get_parent_categories($categories, $parent_categories['parent_id']);
+      }
+    }
+  }
 ?>
