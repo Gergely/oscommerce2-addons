@@ -405,8 +405,7 @@
      if ( !tep_db_num_rows($categories_query) ) {
        //not found categories
        //redirect to $current_category_id = 0;
-       header("HTTP/1.0 404 Not Found"); //302 Status
-       tep_redirect( tep_href_link($PHP_SELF, tep_get_all_get_params(array('cPath'))) );
+       $result = http_error_handler('302');
      } else {
        $new = tep_db_fetch_array($categories_query);
        $new_cPath = $new['cpath'];
