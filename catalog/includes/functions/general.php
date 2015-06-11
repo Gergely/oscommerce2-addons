@@ -257,19 +257,6 @@
   }
 
 ////
-// Validate a category path 
-  function tep_get_validate_cpath($cPath = '') {
-
-    $validation_query = tep_db_query("select categories_id from " . TABLE_CATEGORIES . " where cpath = '" . tep_db_prepare_input($cPath) . "'");
-
-    if ( tep_db_num_rows($validation_query) < 1) {
-      return false;
-    }
-
-    return false;
-  }
-
-////
 // Validate a category path to the product
   function tep_get_validate_product_cpath($products_id, $cPath = '') {
 
