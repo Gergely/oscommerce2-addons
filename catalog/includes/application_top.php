@@ -406,14 +406,14 @@
        //not found categories
        //redirect to $current_category_id = 0;
        header("HTTP/1.0 404 Not Found"); //302 Status
-       tep_redirect( tep_href_link(basename($PHP_SELF), tep_get_all_get_params(array('cPath'))) );
+       tep_redirect( tep_href_link($PHP_SELF, tep_get_all_get_params(array('cPath'))) );
      } else {
        $new = tep_db_fetch_array($categories_query);
        $new_cPath = $new['cpath'];
        if ( tep_not_null($new_cPath) ) {
          if ( isset($HTTP_GET_VARS['cPath']) && $HTTP_GET_VARS['cPath'] !== $new_cPath) {
            header("HTTP/1.0 301 Moved Permanently");
-           tep_redirect(tep_href_link(basename($PHP_SELF), 'cPath=' . $new_cPath . '&' . tep_get_all_get_params(array('cPath'))) );
+           tep_redirect(tep_href_link($PHP_SELF, 'cPath=' . $new_cPath . '&' . tep_get_all_get_params(array('cPath'))) );
          }
        }
      }
@@ -426,7 +426,7 @@
         $path_link = 'cPath=' . $cPath . '&';
       }
       header("HTTP/1.0 301 Moved Permanently");
-      tep_redirect(tep_href_link(basename($PHP_SELF), $path_link . tep_get_all_get_params(array('cPath'))) );
+      tep_redirect(tep_href_link($PHP_SELF, $path_link . tep_get_all_get_params(array('cPath'))) );
     }
   } elseif ( isset($_GET['products_id']) && !isset($_GET['manufacturers_id']) ) {
     $cPath = tep_get_product_path($_GET['products_id']);
