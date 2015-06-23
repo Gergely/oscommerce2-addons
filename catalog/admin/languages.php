@@ -101,6 +101,8 @@
         tep_db_query("delete from " . TABLE_ORDERS_STATUS . " where language_id = '" . (int)$lID . "'");
         tep_db_query("delete from " . TABLE_LANGUAGES . " where languages_id = '" . (int)$lID . "'");
 
+        tep_db_query("update " . TABLE_ORDERS . " set languages_id = '" . DEFAULT_LANGUAGE . "' where languages_id = '" . (int)$lID . "'");
+
         tep_redirect(tep_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page']));
         break;
       case 'delete':

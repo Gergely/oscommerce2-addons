@@ -15,6 +15,23 @@
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
+  $action = (isset($_GET['action']) ? $_GET['action'] : '');
+
+  if (!isset($lng) || (isset($lng) && !is_object($lng))) {
+    include_once(DIR_WS_CLASSES . 'language.php');
+    $lng = new language;
+  }
+
+  $order_language_id = $languages_id;
+
+  if ($action == 'update_order' && isset($_GET['order_language'])) {
+    foreach ($lng->catalog_languages as $lkey => $lvalue) {
+      if ($lvalue['directory'] == $_GET['order_language']) {
+        $order_language_id = $lvalue['id'];
+        break;
+      }
+    }
+  }
   $orders_statuses = array();
   $orders_status_array = array();
   $orders_status_query = tep_db_query("select orders_status_id, orders_status_name from " . TABLE_ORDERS_STATUS . " where language_id = '" . (int)$languages_id . "'");
@@ -97,6 +114,13 @@
 <?php
   if (($action == 'edit') && ($order_exists == true)) {
     $order = new order($oID);
+    $language_code = DEFAULT_LANGUAGE;
+    foreach ($lng->catalog_languages as $lkey => $lvalue) {
+      if ($lvalue['id'] == $order->info['languages_id']) {
+        $language_code = $lkey;
+        break;
+      }
+    }
 ?>
       <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
@@ -269,12 +293,12 @@
         </table></td>
       </tr>
       <tr>
-        <td class="main"><br /><strong><?php echo TABLE_HEADING_COMMENTS; ?></strong></td>
+        <td class="main"><br /><strong><?php echo tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $lng->catalog_languages[$language_code]['directory'] . '/images/' . $lng->catalog_languages[$language_code]['image'], '', 'SSL'), $lng->catalog_languages[$language_code]['name']) . '&nbsp;' . TABLE_HEADING_COMMENTS; ?></strong></td>
       </tr>
       <tr>
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
       </tr>
-      <tr><?php echo tep_draw_form('status', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=update_order'); ?>
+      <tr><?php echo tep_draw_form('status', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=update_order&order_language=' . $lng->catalog_languages[$language_code]['directory']); ?>
         <td class="main"><?php echo tep_draw_textarea_field('comments', 'soft', '60', '5'); ?></td>
       </tr>
       <tr>
@@ -320,6 +344,7 @@
           <tr>
             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
               <tr class="dataTableHeadingRow">
+                <td class="dataTableHeadingContent" align="left"><?php echo '&nbsp;'; ?></td>
                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS; ?></td>
                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
@@ -349,6 +374,7 @@
         echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('oID')) . 'oID=' . $orders['orders_id']) . '\'">' . "\n";
       }
 ?>
+                <td class="dataTableContent" align="left"><?php echo ($orders['languages_id'] > 0 ? tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $orders['directory'] . '/images/' . $orders['image'], '', 'SSL'), $orders['name']) : tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $lng->catalog_languages[DEFAULT_LANGUAGE]['directory'] . '/images/' . $lng->catalog_languages[DEFAULT_LANGUAGE]['image'], '', 'SSL'), $lng->catalog_languages[DEFAULT_LANGUAGE]['name'])); ?></td>
                 <td class="dataTableContent"><?php echo '<a href="' . tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders['orders_id'] . '&action=edit') . '">' . tep_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) . '</a>&nbsp;' . $orders['customers_name']; ?></td>
                 <td class="dataTableContent" align="right"><?php echo strip_tags($orders['order_total']); ?></td>
                 <td class="dataTableContent" align="center"><?php echo tep_datetime_short($orders['date_purchased']); ?></td>
