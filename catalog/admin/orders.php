@@ -22,12 +22,10 @@
     $lng = new language;
   }
 
-  $order_language_id = $languages_id;
-
   if ($action == 'update_order' && isset($_GET['order_language'])) {
     foreach ($lng->catalog_languages as $lkey => $lvalue) {
       if ($lvalue['directory'] == $_GET['order_language']) {
-        $order_language_id = $lvalue['id'];
+        $languages_id = $lvalue['id'];
         break;
       }
     }
